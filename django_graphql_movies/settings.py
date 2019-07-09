@@ -44,7 +44,10 @@ INSTALLED_APPS = [
 ]
 
 GRAPHENE = {
-    'SCHEMA': 'django_graphql_movies.schema.schema'
+    'SCHEMA': 'django_graphql_movies.schema.schema',
+    'MIDDLEWARE': [
+            'graphql_jwt.middleware.JSONWebTokenMiddleware',
+        ],
 }
 
 MIDDLEWARE = [
@@ -56,6 +59,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+]
+
+AUTHENTICATION_BACKENDS = [
+    'graphql_jwt.backends.JSONWebTokenBackend',
+    'django.contrib.auth.backends.ModelBackend',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
