@@ -1,6 +1,7 @@
 import graphene
 from graphene_django.types import DjangoObjectType, ObjectType
 from movies.models import Actor, Movie
+from graphql_jwt.decorators import login_required
 
 # Create a GraphQL type for the actor model
 class ActorType(DjangoObjectType):
@@ -36,6 +37,7 @@ class Query(ObjectType):
 
         return None
 
+    @login_required
     def resolve_actors(self, info, **kwargs):
         return Actor.objects.all()
 
