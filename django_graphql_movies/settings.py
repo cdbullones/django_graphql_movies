@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'graphene_django',
     'movies',
+    'users',
 ]
 
 GRAPHENE = {
@@ -87,8 +88,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'graphql_movies',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
+        'USER': 'jon',
+        'PASSWORD': 'invernalia',
         'HOST': 'localhost',
         'PORT': '5432',
     }
