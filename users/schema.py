@@ -22,7 +22,6 @@ class Query(graphene.ObjectType):
         return user
 
 class UserInput(graphene.InputObjectType):
-    id = graphene.ID()
     username = graphene.String()
     password = graphene.String()
     email = graphene.String()
@@ -35,13 +34,14 @@ class CreateUser(graphene.Mutation):
     ok = graphene.Boolean()
     user = graphene.Field(UserType)
 
-    def mutate(self, info, input=None):
+    def mutate(self, info, input):
+        print("INPUT: " + str(input.email))
         ok = True
         user_instance = get_user_model()(
-            username=input.username,
-            email=input.email
+            username=input["username"],
+            email=input["email"]
         )
-        user_instance.set_password(input.password)
+        user_instance.set_password(input["password"])
         user_instance.save()
 
         return CreateUser(ok=ok, user=user_instance)

@@ -2,6 +2,7 @@ import graphene
 from graphene_django.types import DjangoObjectType, ObjectType
 from movies.models import Actor, Movie
 from graphql_jwt.decorators import login_required
+from graphql import GraphQLError
 
 # Create a GraphQL type for the actor model
 class ActorType(DjangoObjectType):
@@ -42,6 +43,9 @@ class Query(ObjectType):
         return Actor.objects.all()
 
     def resolve_movies(self, info, **kwargs):
+        user = info.context.user
+        if not user.is_authenticated:
+            raise Exception('No esta autenticado')
         return Movie.objects.all()
 
 
