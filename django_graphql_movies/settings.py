@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'graphene_django',
+    'social_django',
     'movies',
     'users',
 ]
@@ -61,6 +62,7 @@ MIDDLEWARE = [
 
 AUTHENTICATION_BACKENDS = [
     'graphql_jwt.backends.JSONWebTokenBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 ]
 
@@ -144,3 +146,8 @@ GRAPHQL_JWT = {
     'JWT_EXPIRATION_DELTA': timedelta(minutes=10),
     'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=7),
 }
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1097020103828953'
+SOCIAL_AUTH_FACEBOOK_SECRET = '9a0511f4964b989e46bdfafd1373fb7e'
+
+SOCIAL_AUTH_POSTGRES_JSONFIELD = True
