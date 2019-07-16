@@ -38,14 +38,14 @@ class Query(ObjectType):
 
         return None
 
-    @login_required
+    #@login_required
     def resolve_actors(self, info, **kwargs):
         return Actor.objects.all()
 
     def resolve_movies(self, info, **kwargs):
-        user = info.context.user
-        if not user.is_authenticated:
-            raise Exception('No esta autenticado')
+        #user = info.context.user
+        #if not user.is_authenticated:
+        #    raise Exception('No esta autenticado')
         return Movie.objects.all()
 
 
