@@ -2,6 +2,6 @@
 */__pycache__
 *.pyc
 .venv
-/django_graphql_movies/.env
+.env
 db.sqlite3
 venv/
